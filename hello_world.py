@@ -1,1 +1,3 @@
-rint('hello world')
+
+print('hello world')
+
