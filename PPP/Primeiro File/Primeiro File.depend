@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1551711251 source:/home/j_marcelino/Desktop/university/PPP/Primeiro File/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1551875291 source:/home/j_marcelino/Desktop/university/PPP/Primeiro File/vectores.c
+
+1551711236 source:/home/j_marcelino/Desktop/university/PPP/Primeiro File/Funcoes.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1551875438 source:/home/j_marcelino/Desktop/university/PPP/Primeiro File/strings.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

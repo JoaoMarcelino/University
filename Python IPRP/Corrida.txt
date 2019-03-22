@@ -1,0 +1,7 @@
+pessoa 1
+outra 3
+joao 30
+tex 300
+John 13
+John 13
+John 13

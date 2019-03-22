@@ -1,0 +1,3 @@
+album1,artista,PESSOA1
+album2,artista,PESSOA2
+album3, artista,PESSOA1

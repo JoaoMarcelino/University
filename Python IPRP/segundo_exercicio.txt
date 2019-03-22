@@ -1,0 +1,3 @@
+E.C.  60  Puta	Casado 
+A.P.  44  Proxeneta	Not Casado 
+C.F.  20  Cliente	Not Casado 

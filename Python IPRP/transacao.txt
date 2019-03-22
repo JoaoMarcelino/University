@@ -1,0 +1,2 @@
+ Nº Transacao: 1 	 Nome Empresa: WoW 	 NºContribuinte: 43 	 Data: 29 Novembro 	 Valor: 5 Paus 
+ Nº Transacao: 2 	 Nome Empresa: WoW 	 NºContribuinte: 43 	 Data: 29 Novembro 	 Valor: 5 Paus 

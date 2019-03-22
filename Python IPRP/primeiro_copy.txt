@@ -1,0 +1,4 @@
+
+O meu primeiro ficheiro de Python!
+
+Data de hoje: 27 / 11 / 2018 
