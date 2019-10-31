@@ -1,0 +1,5 @@
+programa: odd_numbers.c
+	gcc odd_numbers.c -o programa
+
+odd_numbers.o: odd_numbers.c
+	gcc odd_numbers.c -c
