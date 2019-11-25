@@ -12,21 +12,27 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <arpa/inet.h>
 
-#define SERVER_PORT     9000
+#define SERVER_PORT 9000
 #define BUF_SIZE	1024
+#define IP "127.0.0.1"
 
 void process_client(int fd);
 void erro(char *msg);
+void dados(int client_fd);
+void soma(int client_fd);
+void media(int client_fd);
 
 int main() {
   int fd, client;
   struct sockaddr_in addr, client_addr;
   int client_addr_size;
+  char s[50];//ip[20];
 
   bzero((void *) &addr, sizeof(addr));
   addr.sin_family = AF_INET;
-  addr.sin_addr.s_addr = htonl(INADDR_ANY);
+  addr.sin_addr.s_addr = inet_addr(IP);
   addr.sin_port = htons(SERVER_PORT);
 
   if ( (fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -36,6 +42,8 @@ int main() {
   if( listen(fd, 5) < 0)
 	erro("na funcao listen");
   client_addr_size = sizeof(client_addr);
+
+  printf("Servidor hosted em %s:%d",inet_ntoa(addr.sin_addr),SERVER_PORT);
   while (1) {
     //clean finished child processes, avoiding zombies
     //must use WNOHANG or would block whenever a child process was working
@@ -45,6 +53,9 @@ int main() {
     if (client > 0) {
       if (fork() == 0) {
         close(fd);
+        //inet_ntop(AF_INET,&((addr.sin_addr).s_addr),ip,INET_ADDRSTRLEN);
+        sprintf(s,"Mensagem recebida de %s:%d\n",inet_ntoa(addr.sin_addr),SERVER_PORT);
+        write(client,s,50);
         process_client(client);
         exit(0);
       }
@@ -61,6 +72,16 @@ void process_client(int client_fd)
 
 	nread = read(client_fd, buffer, BUF_SIZE-1);
 	buffer[nread] = '\0';
+
+  if(strcmp(buffer,"DADOS")==0) dados(client_fd);
+
+  else if(strcmp(buffer,"SOMA")==0) soma(client_fd);
+  
+  else if(strcmp(buffer,"MEDIA")==0) media(client_fd);
+  
+  else printf("Erro: Comando não Existente"); 
+
+
 	printf("%s\n", buffer);
 	fflush(stdout);
 
@@ -71,4 +92,36 @@ void erro(char *msg)
 {
 	printf("Erro: %s\n", msg);
 	exit(-1);
+}
+
+void dados(int client_fd){
+  int nread = 0;
+  int n;
+  int numeros[10];
+  char buffer[BUF_SIZE];
+  fflush(stdout);
+  while(nread == 0){
+    nread=read(client_fd,buffer,BUF_SIZE-1);
+    buffer[nread] = '\0';
+    
+  }
+  n = sscanf(buffer,"%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",&numeros[0],&numeros[1],&numeros[2],&numeros[3],&numeros[4],&numeros[5],&numeros[6],&numeros[7],&numeros[8],&numeros[9]);
+  if ( n != 10 ) printf("Erro: tudo na merda");
+}
+
+void soma(int client_fd){
+  int nread;
+  char buffer[BUF_SIZE];
+  fflush(stdout);
+  nread=read(client_fd,buffer,BUF_SIZE-1);
+  buffer[nread] = '\0';
+}
+
+void media(int client_fd){
+  int nread;
+  char buffer[BUF_SIZE];
+  fflush(stdout);
+  nread=read(client_fd,buffer,BUF_SIZE-1);
+  buffer[nread] = '\0';
+
 }

@@ -14,6 +14,8 @@ void erro(char *s)
 	exit(1);
 	}
 
+
+
 int main(void)
 {
 struct sockaddr_in si_minha, si_outra;
